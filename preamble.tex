@@ -1,0 +1,42 @@
+% file: preamble.tex
+
+% algorithms
+\usepackage[section]{algorithm}
+\usepackage[]{algpseudocode} % noend
+% See [Adjust the indentation whithin the algorithmicx-package when a line is broken](https://tex.stackexchange.com/a/68540/23098)
+\newcommand{\algparbox}[1]{\parbox[t]{\dimexpr\linewidth-\algorithmicindent}{#1\strut}}
+\newcommand{\hStatex}[0]{\vspace{5pt}}
+\makeatletter
+\newlength{\trianglerightwidth}
+\settowidth{\trianglerightwidth}{$\triangleright$~}
+\algnewcommand{\LineComment}[1]{\Statex \hskip\ALG@thistlm \(\triangleright\) #1}
+\algnewcommand{\LineCommentCont}[1]{\Statex \hskip\ALG@thistlm%
+  \parbox[t]{\dimexpr\linewidth-\ALG@thistlm}{\hangindent=\trianglerightwidth \hangafter=1 \strut$\triangleright$ #1\strut}}
+\makeatother
+
+% maths
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\emptyseq}{\langle \rangle}
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\card}[1]{\left|#1\right|}
+
+% theorem
+\theoremstyle{plain}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem*{claim}{Claim}
+
+% See [subproof](https://tex.stackexchange.com/a/223977/23098)
+\newenvironment{subproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{$\blacksquare$}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
+
+% comments
+\newcommand{\todo}[1]{\textcolor{green}{TODO: #1}}
+\newcommand{\question}[1]{\textcolor{red}{Q: #1}}
+\newcommand{\note}[1]{\textcolor{teal}{Note: #1}}
+\newcommand{\grammar}[1]{\textcolor{blue}{Grammar: #1}}
+\newcommand{\fixme}[1]{\textcolor{purple}{FIXME: #1}}

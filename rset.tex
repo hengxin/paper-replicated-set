@@ -1,0 +1,110 @@
+% file: rset.tex
+
+% This is a template for producing LIPIcs articles. 
+% See lipics-manual.pdf for further information.
+% for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+% for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+% for section-numbered lemmas etc., use "numberwithinsect"
+\documentclass[a4paper,UKenglish]{lipics-v2018}
+
+\input{preamble}
+
+% if unwanted, comment out or use option "draft"
+\usepackage{microtype} 
+
+\bibliographystyle{plainurl} % the recommended bibstyle
+
+\title{Specification, Implementation, and Complexity of Replicated Set with Set Minus}
+
+% optional, please use if title is longer than one line
+% \titlerunning{} 
+
+% mandatory, please use full name; only 1 author per \author macro;
+% first two parameters are mandatory, other parameters can be empty.
+\author{Hengfeng Wei}
+{State Key Laboratory for Novel Software Technology, Nanjing University, China}
+{hfwei@nju.edu.cn}
+{https://orcid.org/0000-0002-0427-9710} % orcid: https://orcid.org/0000-0002-0427-9710
+{} % funding
+
+\author{Huang Yu}
+{State Key Laboratory for Novel Software Technology, Nanjing University, China}
+{yuhuang@nju.edu.cn}
+{https://orcid.org/0000-0001-8921-036X} % orcid: https://orcid.org/0000-0001-8921-036X
+{} % funding
+
+\author{Jian Lu}
+{State Key Laboratory for Novel Software Technology, Nanjing University, China}
+{lj@nju.edu.cn}
+{} % orcid
+{} % funding
+
+% mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
+\authorrunning{H. Wei, Y. Huang, and J. Lu} 
+
+% mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
+\Copyright{Hengfeng Wei, Yu Huang, and Jian Lu} 
+
+% mandatory: Please choose ACM 2012 classifications from https://www.acm.org/publications/class-2012 
+% or https://dl.acm.org/ccs/ccs_flat.cfm . 
+% E.g., cite as "General and reference $\rightarrow$ General literature" or \ccsdesc[100]{General and reference~General literature}. 
+\subjclass{ 
+}
+
+\keywords{
+  Replicated set
+} % mandatory
+
+% optional, e.g. invited paper
+\category{} 
+
+% optional, e.g. full version hosted on arXiv, HAL, or other repository/website
+\relatedversion{} 
+
+% optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
+\supplement{}
+
+% optional, to capture a funding statement, which applies to all authors. 
+% Please enter author specific funding statements as fifth argument of the \author macro.
+\funding{}
+
+% optional
+\acknowledgements{} 
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \EventEditors{John Q. Open and Joan R. Access}
+% \EventNoEds{2}
+% \EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+% \EventShortTitle{CVIT 2016}
+% \EventAcronym{CVIT}
+% \EventYear{2016}
+% \EventDate{December 24--27, 2016}
+% \EventLocation{Little Whinging, United Kingdom}
+% \EventLogo{}
+% \SeriesVolume{42}
+% \ArticleNo{23}
+
+% \nolinenumbers % uncomment to disable line numbering
+% \hideLIPIcs  % uncomment to remove references to LIPIcs series (logo, DOI, ...), 
+% e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\input{sections/abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/preliminaries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/related-work}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliography{rset}
+
+\end{document}
