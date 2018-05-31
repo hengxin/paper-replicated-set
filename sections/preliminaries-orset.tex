@@ -1,0 +1,10 @@
+% file: sections/preliminaries-orset.tex
+
+\subsection{Observed-Remove Set (\ORset{})}	\label{ss:orset}
+
+\begin{align}
+  \mathcal{F}_{\orset}(\op{rd}, E, \op{op}, \ord{vis}, \ord{ar})
+  = \set{a \mid & \exists e \in E. \op{op}(e) = \op{add}(a) \\
+  \land \lnot & \exists f \in E. \op{op}(f) = \op{rm}(a) \land \vis{e}{f}}.
+\end{align}
+
