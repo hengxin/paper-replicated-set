@@ -3,8 +3,8 @@
 \subsection{Observed-Remove Set (\ORset{})}	\label{ss:orset}
 
 \begin{align}
-  \mathcal{F}_{\orset}(\op{rd}, E, \op{op}, \ord{vis}, \ord{ar})
-  = \set{a \mid & \exists e \in E. \op{op}(e) = \op{add}(a) \\
-  \land \lnot & \exists f \in E. \op{op}(f) = \op{rm}(a) \land \vis{e}{f}}.
+  \mathcal{F}_{\orset}(\rd, E, \op, \vis, \ar)
+  = \set{a \mid\; &\exists e \in E. \op(e) = \add(a) \\
+  \land\; \big(&\forall f \in E. \op(f) = \remove(a) \implies \lnot(\visord{e}{f})\big)}.
 \end{align}
 

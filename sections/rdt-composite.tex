@@ -1,0 +1,43 @@
+% file: section/rdt-composite.tex
+
+\section{Replicated Data Types with Composite Operations}
+
+\subsection{Specification}	\label{ss:rdt-composite-spec}
+
+We consider a composite operation of a replicated data type $\tau$ 
+in the form of $C = A \oplus B$, 
+where $A$, $B$, and $C$ are different objects of type $\tau$.
+\marginnote{\question{Generalize to different data types?}}
+
+Following~\cite{Burckhardt:POPL14}, we specify the semantics of 
+a composite operation $A \oplus B$ of a replicated data type $\tau$
+by a function $\F_{\tau}$ that determines the return value of $\oplus$ 
+based on prior operations performed on the two objects involved (i.e., $A$ and $B$).
+However, $\F_{\tau}$ for a composite operation $\oplus$ 
+takes as parameters two, not one as in~\cite{Burckhardt:POPL14}, 
+\emph{operation contexts}, one on each object involved.
+\marginnote{\note{Partial operation context~\cite{Gotsman:ESOP15}}}
+
+\begin{definition}[Product of Operation Contexts]
+  Consider two operation contexts for the same replicated data type $\tau$:
+  \begin{align}
+    \C_{A} = (E_A, \op_{A}, \vis_{A}, \ar_{A}) \\
+    \C_{B} = (E_B, \op_{B}, \vis_{B}, \ar_{B})
+  \end{align}
+
+  The product $\C = \C_{A} \times \C_{B}$ of $\C_{A}$ and $\C_{B}$ 
+  is also an operation context defined as $\C = (E, \op, \vis, \ar)$, where
+  \begin{itemize}
+    \item $E = E_A \times E_B$
+    \item $\op = \op_{A} \sqcup \op_{B}$
+    \item $\vis = \vis_{A} \times \vis_{B}$
+    \item $\ar = \ar_{A} \times \ar_{B}$
+  \end{itemize}
+\end{definition}
+
+\begin{definition}
+  \begin{align}
+    \F_{\tau}(\oplus, \C_{A}, \C_{B}) 
+    = \F_{\tau}(\oplus, \C_{A} \times \C_{B})
+  \end{align}
+\end{definition}

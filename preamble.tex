@@ -34,15 +34,28 @@
   \end{proof}%
 }
 
-\newcommand{\ORset}{OR-Set}
+%%%%% fonts %%%%%
+\newcommand{\rd}{\texttt{rd}}
+\newcommand{\add}{\texttt{add}}
+\newcommand{\remove}{\texttt{rm}}
+
+\newcommand{\C}{\mathcal{C}} % operation context
+\newcommand{\F}{\mathcal{F}} % specification function
+\newcommand{\ORset}{\texttt{OR-Set}}
 \newcommand{\orset}{\texttt{orset}}
-\newcommand{\op}[1]{\text{#1}}
-\newcommand{\ord}[1]{\textsf{#1}}
-\newcommand{\vis}[2]{#1 \xrightarrow{\ord{vis}} #2}
+\newcommand{\op}{\texttt{op}}
+\newcommand{\vis}{\textsf{vis}}
+\newcommand{\ar}{\textsf{ar}}
+%%%%% fonts %%%%%
+
+\newcommand{\visord}[2]{#1 \xrightarrow{\textsf{vis}} #2}
 
 % comments
+\usepackage{marginnote}
+
+\usepackage{xcolor}
 \newcommand{\todo}[1]{\textcolor{green}{TODO: #1}}
-\newcommand{\question}[1]{\textcolor{red}{Q: #1}}
+\newcommand{\question}[1]{\textcolor{red}{$Q:$ #1}}
 \newcommand{\note}[1]{\textcolor{teal}{Note: #1}}
 \newcommand{\grammar}[1]{\textcolor{blue}{Grammar: #1}}
 \newcommand{\fixme}[1]{\textcolor{purple}{FIXME: #1}}
