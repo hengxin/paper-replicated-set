@@ -7,8 +7,19 @@ including union ($\cup$), intersection ($\cap$), and set difference ($\setminus$
 
 \subsection{Specification}	\label{ss:rset-composite-spec}
 
+
 \begin{align}
-  \F_{\orset}(A \setminus B, \C_{A}, \C_{B}) = \{ a \mid \cdots \}.
+  \F_{\orset}&(A \setminus B, \C_{A}, \C_{B}) \\
+  &= \{ a \mid \exists (e, e') \in E_A \times E_B. 
+  	\Big( \big(\op(e) = \add(a) \land \op(e') = \remove(a)\big) \\
+      	    &\qquad\qquad \land \forall (f, f') \in E_A \times E_B. 
+      	        \big( (\op(f) = \add(a) \land \op(f') = \add(a)) 
+		      \lor (\op(f) = \remove(a) \land \op(f') = \add(a)) 
+		      \lor (\op(f) = \remove(a) \land \op(f') = \remove(a)) 
+		\big) \\
+	    & \implies \lnot \big(\visord{(e, e')}{(f, f')\big)}
+	\Big)
+	      \}.
 \end{align}
 
 \subsection{Protocol}		\label{ss:rset-composite-protocol}
