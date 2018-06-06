@@ -1,0 +1,149 @@
+% file: sections/rset.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Replicated Set with Composite Operations}
+
+We consider the replicated set data type with composite operations 
+including union ($\cup$), intersection ($\cap$), difference ($\setminus$),
+and symmetric difference ($\otimes$).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Specification}	\label{ss:rset-composite-spec}
+
+General method for set union, set intersection, and set difference:
+There are four $\cdots$
+
+\begin{align}
+  \F_{\orset}&(A \setminus B, \C_{A}, \C_{B}) \\
+  &= \{ a \mid \exists (e, e') \in E_A \times E_B. 
+  	\Big( \big(\op(e) = \add(a) \land \op(e') = \remove(a)\big) \\
+      	    &\qquad\qquad \land \forall (f, f') \in E_A \times E_B. 
+      	        \big( (\op(f) = \add(a) \land \op(f') = \add(a)) 
+		      \lor (\op(f) = \remove(a) \land \op(f') = \add(a)) 
+		      \lor (\op(f) = \remove(a) \land \op(f') = \remove(a)) 
+		\big) \\
+	    & \implies \lnot \big(\visord{(e, e')}{(f, f')\big)}
+	\Big)
+	      \}.
+\end{align}
+
+\begin{example}[Specification for Composite Operations of Replicated Set]
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Protocol}		\label{ss:rset-composite-protocol}
+
+\subsubsection{Methodology}	\label{sss:rset-methodology}
+
+Op-based
+
+We always assume that $A \neq \emptyset$, $A' \neq \emptyset$,
+and $(\A \cup \R) \cap (\A' \cup \R') = \emptyset$.
+Note that for any replica state $(a, \A, \R)$, we have $\R \subseteq \A$.
+
+The goal is to find $\Box$ and $\Diamond$ such that 	\marginnote{\question{$\emptyset$ issues}}
+\[
+   \cdots \iff \Box \subseteq \Diamond
+\]
+
+%%%%%%%%%% fig:reset-protocol %%%%%%%%%% 
+\begin{figure}[t]
+  \[
+    \begin{array}{lcl}
+      U &:& \text{universe of elements}	\\
+      I &:& \text{set of identifiers}	\\
+      \A, \R  &\in& \text{SUBSET } \I	\\
+      \Sigma &=& \U \times \A \times \R \\
+      \sigma_{0} &=& \lambda r.\; \emptyset
+    \end{array}
+  \]
+  \caption{Implementation of replicated set with composite operations.}
+  \label{fig:rset-protocol}
+\end{figure}
+%%%%%%%%%% fig:reset-protocol %%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Set Union ($\cup$)}
+
+The goal is to find $\Box$ and $\Diamond$ such that
+\[
+  (\R \subset \A) \lor (\R' \subset \A') \iff \Box \subset \Diamond.
+\]
+
+\begin{theorem}[Set Union]  \label{thm:union}
+  Given that $\R \subseteq \A$ and $\R' \subseteq \A'$, we have
+  \[
+    (\R \subset \A) \lor (\R' \subset \A') \iff (\R \cup \R') \subset (\A \cup \A').
+  \]
+\end{theorem}
+
+\begin{theorem}[Set Union (Alternative)]  \label{thm:union-alt}	\marginnote{\question{How to choose?} Another way: 
+  \[
+    (\R \subset \A) \lor (\R' \subset \A') \iff (\R \times \R') \subset (\A \times \A').
+  \]}
+  Given that $\R \subseteq \A$ and $\R' \subseteq \A'$, we have
+  \[
+    (\R \subset \A) \lor (\R' \subset \A') \iff 
+    (\A \times \R') \cap (\R \times \A') \subset (\A \times \A')
+  \]
+\end{theorem}
+%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Set Intersection ($\cap$)}
+
+\marginnote{Another way: IF THEN ELSE}
+
+The goal is to find $\Box$ and $\Diamond$ such that
+\[
+  (\R \subset \A) \land (\R' \subset \A') \iff \Box \subset \Diamond.
+\]
+
+\begin{theorem}[Set Intersection]  \label{thm:intersection}
+  Given that $\R \subseteq \A$ and $\R' \subseteq \A'$, we have
+  \[
+    (\R \subset \A) \land (\R' \subset \A') \iff (\A \times \R') \cup (\R \times \A') \subset (\A \times \A').
+  \]
+\end{theorem}
+%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Set Difference ($\setminus$)}
+
+The goal is to find $\Box$ and $\Diamond$ such that
+\[
+  (\R \subset \A) \land (\R' \not\subset \A') \iff \Box \subset \Diamond.
+\]
+
+\begin{theorem}[Set Difference]  \label{thm:diff}
+  Given that $\R \subseteq \A$ and $\R' \subseteq \A'$, we have 
+  \[
+    (\R \subset \A) \land (\R' \not\subset \A') \iff (\R \times \A') \subset (\A \times \R').
+  \]
+\end{theorem}
+%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Set Symmetric Difference ($\otimes$)}
+
+The goal is to find $\Box$ and $\Diamond$ such that
+\[
+  \big((\R \subset \A) \land (\R' \not\subset \A')\big) \lor 
+  \big((\R \not\subset \A) \land (\R' \subset \A')\big) \iff \Box \subset \Diamond.
+\]
+
+By the identity $A \otimes B = (A \cup B) \setminus (A \cap B)$ 
+and Theorems~\ref{thm:union}, \ref{thm:intersection}, and~\ref{thm:diff}, we have
+\begin{theorem}[Set Symmetric Difference]  \label{thm:sym-diff}
+  Given that $\R \subseteq \A$ and $\R' \subseteq \A'$, we have
+  \begin{align*}
+    \big((\R &\subset \A) \land (\R' \not\subset \A')\big) \lor 
+    \big((\R \not\subset \A) \land (\R' \subset \A')\big) \\
+    & \iff (\R \cup \R') \times (\A \cup \A') \subset (\A \cup \A') \times \big((\A \times \R') \cup (\R \cup \A')\big)
+  \end{align*}
+\end{theorem}
+
+By the identity $A \otimes B = (A \setminus B) \cup (B \setminus A)$ 
+and Theorems~\ref{thm:union-alt} and~\ref{thm:diff}, we have	\marginnote{It fails to use Theorem~\ref{thm:union} here.}
+\begin{theorem}[Set Symmetric Difference (Alternative)]  \label{thm:sym-diff-alt}
+  Given that $\R \subseteq \A$ and $\R' \subseteq \A'$, we have
+  \begin{align*}
+    \big((\R &\subset \A) \land (\R' \not\subset \A')\big) \lor 
+    \big((\R \not\subset \A) \land (\R' \subset \A')\big) \\
+    & \iff (\A \times \R') \times (\R' \times \A) \cap (\R \times \A') \times (\A' \times \R) \subset (\A \times \R') \times (\A' \times \R)
+  \end{align*}
+\end{theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
