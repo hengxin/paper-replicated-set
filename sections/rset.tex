@@ -62,7 +62,11 @@ The goal is to find $\Box$ and $\Diamond$ such that 	\marginnote{\question{$\emp
 \end{figure}
 %%%%%%%%%% fig:reset-protocol %%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%
-\subsubsection{Set Union ($\cup$)}
+
+\subsubsection{Basic Composite Operations for Replicated Set}	\label{sss:rset-basic}
+
+%%%%%%%%%%
+\paragraph{Set Union ($\cup$)}
 
 The goal is to find $\Box$ and $\Diamond$ such that
 \[
@@ -86,8 +90,8 @@ The goal is to find $\Box$ and $\Diamond$ such that
     (\A \times \R') \cap (\R \times \A') \subset (\A \times \A')
   \]
 \end{theorem}
-%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Set Intersection ($\cap$)}
+%%%%%%%%%%
+\paragraph{Set Intersection ($\cap$)}
 
 \marginnote{Another way: IF THEN ELSE}
 
@@ -102,8 +106,8 @@ The goal is to find $\Box$ and $\Diamond$ such that
     (\R \subset \A) \land (\R' \subset \A') \iff (\A \times \R') \cup (\R \times \A') \subset (\A \times \A').
   \]
 \end{theorem}
-%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Set Difference ($\setminus$)}
+%%%%%%%%%%
+\paragraph{Set Difference ($\setminus$)}
 
 The goal is to find $\Box$ and $\Diamond$ such that
 \[
@@ -117,7 +121,10 @@ The goal is to find $\Box$ and $\Diamond$ such that
   \]
 \end{theorem}
 %%%%%%%%%%%%%%%%%%%%
-\subsubsection{Set Symmetric Difference ($\otimes$)}
+\subsubsection{Derived Composite Operations and Laws for Replicated Set}	\label{sss:rset-law}
+
+%%%%%%%%%%
+\paragraph{Set Symmetric Difference ($\otimes$)}
 
 The goal is to find $\Box$ and $\Diamond$ such that
 \[
@@ -132,7 +139,7 @@ and Theorems~\ref{thm:union}, \ref{thm:intersection}, and~\ref{thm:diff}, we hav
   \begin{align*}
     \big((\R &\subset \A) \land (\R' \not\subset \A')\big) \lor 
     \big((\R \not\subset \A) \land (\R' \subset \A')\big) \\
-    & \iff (\R \cup \R') \times (\A \cup \A') \subset (\A \cup \A') \times \big((\A \times \R') \cup (\R \cup \A')\big)
+    & \iff (\R \cup \R') \times (\A \cup \A') \subset (\A \cup \A') \times \big((\A \times \R') \cup (\R \times \A')\big)
   \end{align*}
 \end{theorem}
 
@@ -145,5 +152,13 @@ and Theorems~\ref{thm:union-alt} and~\ref{thm:diff}, we have	\marginnote{It fail
     \big((\R \not\subset \A) \land (\R' \subset \A')\big) \\
     & \iff (\A \times \R') \times (\R' \times \A) \cap (\R \times \A') \times (\A' \times \R) \subset (\A \times \R') \times (\A' \times \R)
   \end{align*}
+\end{theorem}
+%%%%%%%%%%
+\paragraph{Laws}
+
+\begin{theorem}[Distributive Law]
+  \[
+    A \cup (B \cap C) = (A \cup B) \land (A \cup C)
+  \]
 \end{theorem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
